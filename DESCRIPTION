@@ -1,0 +1,20 @@
+Package: lpmisc
+Title: Miscellaneous functions to create tables, graphs and tables of statistical tests
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Lefkios",
+           family = "Paikousis",
+           role = c("aut", "cre"),
+           email = "lefkiospaikousis@yaho.com",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: This package holds my personal functions. Usually these are functions that create
+    tables, graphs, and statistical tests
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    dplyr,
+    tidyr,
+    purrr
+Suggests: 
+    testthat
