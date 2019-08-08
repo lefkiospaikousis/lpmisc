@@ -3,7 +3,7 @@
 #' This function bla bla
 #'
 #' Notes
-#' @param data A dataframe, tibble
+#' @param data A dataframe or tibble
 #' @param group The group variable. Must have 2 distince values
 #' @param ... The variables for the means to be calculated. DPlyr style
 #'
@@ -16,11 +16,14 @@
 #' }
 table_means <- function(data, group, ...){
 
-  group <- dplyr::enquo(group)
+  assertthat::assert_that(is.data.frame(data))
+
+  # are columns to summarise numeric?
+  map(data %>% select(!!!rlang::enquos(...)), ~  assert_that(is.numeric(.), msg = "At least one of the provided columns in ... is not numeric"))
+
+  group <- rlang::enquo(group)
 
   n_grs <- data %>% dplyr::distinct(!!group) %>% dplyr::pull()
-
-  #assertthat::assert_that(length(n_grs)==2)
 
   if (length(n_grs) !=2) stop(
     paste0("Number of groups is ", length(n_grs), ". Must be 2. This is a t.test remember?")
@@ -37,11 +40,13 @@ table_means <- function(data, group, ...){
     unite(mean_sd, mean, sd, sep = "_") %>%
     spread(!!group, mean_sd) %>%
     separate(2,
-             into = paste0(names(.)[2],
+             into = paste0(as_name(group),"_",
+                           names(.)[2],
                            c("_mean", "_sd")),
              sep = "_", convert = TRUE) %>%
     separate(4,
-             into = paste0(names(.)[4],
+             into = paste0(as_name(group),"_",
+                           names(.)[4],
                            c("_mean", "_sd")),
              sep = "_", convert = TRUE)
 
