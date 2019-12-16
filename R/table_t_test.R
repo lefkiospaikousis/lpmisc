@@ -37,6 +37,8 @@ table_t_test <- function(data, group, ...){
     # get t. tests in tidy format
     mutate(t_result = map(data, ~ t.test(lm_eq, data = .))) %>%
     mutate(t_tidy   = map(t_result, broom::tidy)) %>%
+    # TO DO: The unnest here will id deprecated
+    # Thing of something else to do here
     unnest(t_tidy, .drop = TRUE)
 
   return(list(
