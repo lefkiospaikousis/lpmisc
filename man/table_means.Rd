@@ -2,16 +2,18 @@
 % Please edit documentation in R/table_means.R
 \name{table_means}
 \alias{table_means}
-\title{Craate a 2 by n, table of means and sd's}
+\title{Craate a table of means and sd's}
 \usage{
-table_means(data, group, ...)
+table_means(.data, group, ..., add_totals = FALSE)
 }
 \arguments{
-\item{data}{A dataframe, tibble}
+\item{.data}{A dataframe or tibble}
 
-\item{group}{The group variable. Must have 2 distince values}
+\item{group}{The group variable. Must be of type character or factor}
 
 \item{...}{The variables for the means to be calculated. DPlyr style}
+
+\item{add_totals}{Logical. Add the overall aggregations? Defaults to FALSE.}
 }
 \value{
 A tibble
