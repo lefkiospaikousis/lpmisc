@@ -14,6 +14,17 @@
 #' @export
 #'
 #' @examples
+#' test = data.frame(id = 1:10,
+#' var_1 = rnorm(10),
+#' var_2 = rnorm(10)
+#' )
+#'
+#' retest = data.frame(id = 1:10,
+#'                 var_1 = rnorm(10),
+#'                 var_2 = rnorm(10))
+#'
+#'
+#' lp_testRtest(test, retest)
 lp_testRtest <- function(.test, .retest, .id = "id", .method = "pearson"){
 
 
@@ -44,6 +55,3 @@ lp_testRtest <- function(.test, .retest, .id = "id", .method = "pearson"){
     purrr::set_names(nm = df_names) %>%
     tibble::enframe("var", "r")
 }
-
-
-lp_testRtest(test_part1, retest_part1)
