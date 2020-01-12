@@ -14,5 +14,5 @@ lp_missing <- function(.data, ...){
 
   .data %>%
     purrr::map_int(~ sum(is.na(.))) %>%
-    tibble::enframe("variable", "n_missing")
+    tibble::enframe("variable", "n")
 }
