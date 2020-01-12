@@ -10,7 +10,7 @@
 #'
 #' @examples
 #' scatter_by_target(mtcars, disp:wt, target = mpg)
-scatter_by_target <- function(.data, ..., target = NULL, width = 25){
+scatter_by_target <- function(.data, target = NULL, ...,  width = 25){
 
   # haven;t found a good way to check the inputs here
   #
