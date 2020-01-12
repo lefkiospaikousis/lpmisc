@@ -7,7 +7,9 @@ Authors@R:
            role = c("aut", "cre"),
            email = "lefkiospaikousis@yahoo.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: This package holds my personal functions. Usually these are functions that create tables, graphs, and statistical tests. I have created them to facilitate my data analysis projects. Use freely
+Description: This package holds my personal functions.    
+    Usually these are functions that create tables, graphs, and statistical tests. 
+    I have created them to facilitate my data analysis projects. Use freely
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -21,7 +23,9 @@ Imports:
     assertthat,
     tibble,
     inspectdf,
-    ggplot2
+    ggplot2,
+    corrr,
+    stringr
 Suggests: 
     testthat (>= 2.1.0)
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.1

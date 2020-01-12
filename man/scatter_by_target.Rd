@@ -4,14 +4,16 @@
 \alias{scatter_by_target}
 \title{Scatterplots of one variable to many others}
 \usage{
-scatter_by_target(.data, ..., target = NULL)
+scatter_by_target(.data, target = NULL, ..., width = 25)
 }
 \arguments{
 \item{.data}{The dataframe}
 
+\item{target}{The target variable to plot scatter against all other vars}
+
 \item{...}{The variables to use. DPLYR style. Supports \code{dplyr::everything()}}
 
-\item{target}{The target variable to plot scatter against all other vars}
+\item{width}{The width of the labeller function in the strips. Defaults t0 25}
 }
 \value{
 A ggplot object
