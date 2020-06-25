@@ -2,6 +2,7 @@
 
 export("%>%")
 export(calc_factor_sum)
+export(facet_histogram)
 export(lp_bar_chart)
 export(lp_missing)
 export(lp_scatter_by_target)

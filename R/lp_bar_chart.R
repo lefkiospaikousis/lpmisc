@@ -3,6 +3,10 @@
 #' @param data The dataset
 #' @param var The variable to plot
 #' @param .title Optional. The title
+#' @param .xlab The x-axis label. Defaults to the variable name
+#' @param .ylab The y-axis label. Defaults to the variable name
+#' @param .title Optional title
+#' @param .bar_col The colour of the bars
 #'
 #' @return A ggplot object
 #' @export

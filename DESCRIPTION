@@ -9,7 +9,7 @@ Authors@R:
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: This package holds my personal functions.    
     Usually these are functions that create tables, graphs, and statistical tests. 
-    I have created them to facilitate my data analysis projects. Use freely
+    I have created them to facilitate my data analysis projects. Use freely.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -26,7 +26,9 @@ Imports:
     ggplot2,
     corrr,
     stringr,
-    ggthemes
+    ggthemes,
+    forcats,
+    scales
 Suggests: 
     testthat (>= 2.1.0)
 RoxygenNote: 7.0.2

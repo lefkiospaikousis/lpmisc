@@ -4,14 +4,27 @@
 \alias{lp_bar_chart}
 \title{A bar chart with percentages}
 \usage{
-lp_bar_chart(data, var, .title = NULL)
+lp_bar_chart(
+  data,
+  var,
+  .xlab = NULL,
+  .ylab = NULL,
+  .title = NULL,
+  .bar_col = "#EE5C42"
+)
 }
 \arguments{
 \item{data}{The dataset}
 
 \item{var}{The variable to plot}
 
-\item{.title}{Optional. The title}
+\item{.xlab}{The x-axis label. Defaults to the variable name}
+
+\item{.ylab}{The y-axis label. Defaults to the variable name}
+
+\item{.title}{Optional title}
+
+\item{.bar_col}{The colour of the bars}
 }
 \value{
 A ggplot object
