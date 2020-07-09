@@ -44,7 +44,7 @@ lp_summarise <- function(.data, ...){
   .data %>%
     dplyr::select_at(dplyr::vars(...)) %>%
     tidyr::gather("key", "value", - dplyr::one_of(dplyr::group_vars(.))) %>%
-    dplyr::group_by(key, add = TRUE) %>%
+    dplyr::group_by(key, .add = TRUE) %>%
     dplyr::summarise_at(dplyr::vars(value), my_summary)
 }
 
