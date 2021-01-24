@@ -2,7 +2,7 @@
 % Please edit documentation in R/scatter_by_target.R
 \name{lp_scatter_by_target}
 \alias{lp_scatter_by_target}
-\title{Scatterplots of one variable to many others}
+\title{Scatterplots of one variable vs many others}
 \usage{
 lp_scatter_by_target(
   .data,
@@ -30,7 +30,8 @@ lp_scatter_by_target(
 A ggplot object
 }
 \description{
-Scatterplots of one variable to many others
+This function plots a multi-panel scatterplot where many variables are plotted against
+a target variable
 }
 \examples{
 lp_scatter_by_target(mtcars, target = mpg, disp:wt)

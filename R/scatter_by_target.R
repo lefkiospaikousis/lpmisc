@@ -1,4 +1,7 @@
-#' Scatterplots of one variable to many others
+#' Scatterplots of one variable vs many others
+#'
+#' This function plots a multi-panel scatterplot where many variables are plotted against
+#' a target variable
 #'
 #' @param .data The dataframe
 #' @param ... The variables to use. DPLYR style. Supports \code{dplyr::everything()}
@@ -6,6 +9,7 @@
 #' @param width The width of the labeller function in the strips. Defaults t0 25
 #' @param .cor_method The correlation method. One of "pearson", "kendall", spearman". Defaults to "pearson"
 #' @param .smouth The smooth method for the graphs. All option available in the ggplot2::geom_smouth()
+#' @param .scales Character. The \code{scales} arg of ggplot2::facet_wrap(). One of c("fixed", "free","free_x", "free_y"). Defaults to "fixed"
 #'
 #' @return A ggplot object
 #' @export
@@ -16,11 +20,14 @@ lp_scatter_by_target <- function(.data, target = NULL, ...
                                  ,  width = 25
                                  , .cor_method = "pearson"
                                  , .smouth = "lm"
+                                 , .scales = c("fixed", "free","free_x", "free_y")
                                  ){
 
   # haven;t found a good way to check the inputs here
   #
   #if(is.null(target)) stop("Hey dude! What variable is the target?")
+
+  .scales <- match.arg(.scales)
 
   if(rlang::quo_is_missing(rlang::enquo(target))) stop("Hey dude! What variable is the target?")
 
@@ -62,5 +69,5 @@ lp_scatter_by_target <- function(.data, target = NULL, ...
                     , label = round(corr, 2))
                , df_label
                , color = 'red') +
-    ggplot2::facet_wrap(~variable, labeller = ggplot2::label_wrap_gen(width = width), scales = 'free_y')
+    ggplot2::facet_wrap(~variable, labeller = ggplot2::label_wrap_gen(width = width), scales = .scales)
 }
