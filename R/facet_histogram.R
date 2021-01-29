@@ -3,14 +3,18 @@
 #' @param data The data
 #' @param ... The variables to plot. Unquoted, dplyr way
 #' @param statistic One of "mean", "median". Defaults to "mean"
+#' @param .scales Character. The \code{scales} arg of ggplot2::facet_wrap(). One of c("fixed", "free","free_x", "free_y"). Defaults to "fixed"
 #'
 #' @return A ggplot
 #' @export
 #'
 #' @examples
-facet_histogram <- function(data, ..., statistic = c("mean", "median")) {
+facet_histogram <- function(data, ..., statistic = c("mean", "median"),
+                            .scales = c("fixed", "free","free_x", "free_y")
+                            ) {
 
   statistic <- match.arg(statistic)
+  .scales <- match.arg(.scales)
 
   data_long <-
     data %>%
@@ -30,14 +34,13 @@ facet_histogram <- function(data, ..., statistic = c("mean", "median")) {
       )
 
   data_long %>%
-    ggplot(aes(value))+
-    geom_histogram(colour = "grey80", binwidth = function(x) 2 * IQR(x) / (length(x)^(1/3)))+
-    facet_wrap(~key, scales = "free_x")+
-    geom_vline( data = data_avg, aes(xintercept = !!sym(statistic)), colour = "red", linetype = "dashed")+
-    labs(x = "",
+    ggplot2::ggplot(ggplot2::aes(value))+
+    ggplot2::geom_histogram(colour = "grey80", binwidth = function(x) 2 * IQR(x) / (length(x)^(1/3)))+
+    ggplot2::facet_wrap(~key, scales = .scales)+
+    ggplot2::geom_vline( data = data_avg, ggplot2::aes(xintercept = !!sym(statistic)), colour = "red", linetype = "dashed")+
+    ggplot2::labs(x = "",
          y = "Frequency",
          caption = paste0("--- Indicates ", statistic, " value"))+
-    theme(strip.text = element_text(size = 12))+
-    ggthemes::theme_clean()
+    ggplot2::theme(strip.text = element_text(size = 12))
 
 }
