@@ -10,7 +10,8 @@ lp_scatter_by_target(
   ...,
   width = 25,
   .cor_method = "pearson",
-  .smouth = "lm"
+  .smouth = "lm",
+  .scales = c("free", "fixed", "free_x", "free_y")
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ lp_scatter_by_target(
 \item{.cor_method}{The correlation method. One of "pearson", "kendall", spearman". Defaults to "pearson"}
 
 \item{.smouth}{The smooth method for the graphs. All option available in the ggplot2::geom_smouth()}
+
+\item{.scales}{Character. The \code{scales} arg of ggplot2::facet_wrap(). One of c("fixed", "free","free_x", "free_y"). Defaults to "fixed"}
 }
 \value{
 A ggplot object

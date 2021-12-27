@@ -20,8 +20,8 @@ lp_scatter_by_target <- function(.data, target = NULL, ...
                                  ,  width = 25
                                  , .cor_method = "pearson"
                                  , .smouth = "lm"
-                                 , .scales = c("fixed", "free","free_x", "free_y")
-                                 ){
+                                 , .scales = c("free_y", "free", "fixed","free_x")
+){
 
   # haven;t found a good way to check the inputs here
   #
@@ -33,41 +33,27 @@ lp_scatter_by_target <- function(.data, target = NULL, ...
 
   .data <- .data %>% dplyr::select({{target}}, ...)
 
-  #print(.data)
-
-  df_cor <-
-    .data %>%
-    inspectdf::inspect_cor(with_col = rlang::as_label(rlang::enquo(target)), method = .cor_method) %>%
-    dplyr::rename("target" = col_1, "variable" = col_2)
-
-  #print(df_cor)
-
-
-  temp <-
+  dta_long <-
     .data %>%
     tidyr::gather(key = "variable", value = "value", - {{target}})
 
-  #print(temp)
-
-  df_label <-
-    temp %>%
+  df_cor <-
+    dta_long %>%
     dplyr::group_by(variable) %>%
-    dplyr::summarise(pos.y = max(value) *.9
-                    , pos.x = max({{target}})*0.9) %>%
-    dplyr::left_join(
-        df_cor %>% dplyr::select(variable, corr)
-      , by = "variable"
+    dplyr::summarise(
+      corr = cor({{target}}, value, method = .cor_method),
+      pos.y = max(value) *.9,
+      pos.x = max({{target}})*0.9
     )
-  #print(df_label)
 
-  temp %>%
+  dta_long %>%
     ggplot2::ggplot(ggplot2::aes({{target}}, value) ) +
     ggplot2::geom_point( alpha = 0.5 )+
     ggplot2::geom_smooth(method = .smouth)+
     ggplot2::geom_label(ggplot2::aes( x = pos.x
-                    , y = pos.y
-                    , label = round(corr, 2))
-               , df_label
-               , color = 'red') +
+                                      , y = pos.y
+                                      , label = paste0("r = ", round(corr, 2)))
+                        , df_cor
+                        , color = 'red') +
     ggplot2::facet_wrap(~variable, labeller = ggplot2::label_wrap_gen(width = width), scales = .scales)
 }
