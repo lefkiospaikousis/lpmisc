@@ -7,6 +7,9 @@
 lp_bar_chart(
   data,
   var,
+  .pct_reorder = TRUE,
+  .drop_levels = TRUE,
+  .hjust = -0.2,
   .xlab = NULL,
   .ylab = NULL,
   .title = NULL,
@@ -17,6 +20,12 @@ lp_bar_chart(
 \item{data}{The dataset}
 
 \item{var}{The variable to plot}
+
+\item{.pct_reorder}{Logical length 1. Reorder the bars based on value?}
+
+\item{.drop_levels}{Logical length 1. Drop unused levels in the factor when counting ? i.e. do not show '0' count}
+
+\item{.hjust}{Numeric length 1. The jhust for the value labels.}
 
 \item{.xlab}{The x-axis label. Defaults to the variable name}
 
@@ -31,4 +40,7 @@ A ggplot object
 }
 \description{
 A bar chart with percentages
+}
+\examples{
+lp_bar_chart(iris, Species)
 }

@@ -4,7 +4,13 @@
 \alias{facet_histogram}
 \title{Faceted distribution of variables as histograms}
 \usage{
-facet_histogram(data, ..., statistic = c("mean", "median"))
+facet_histogram(
+  data,
+  ...,
+  statistic = c("mean", "median"),
+  .scales = c("fixed", "free", "free_x", "free_y"),
+  .colour = "grey80"
+)
 }
 \arguments{
 \item{data}{The data}
@@ -12,10 +18,20 @@ facet_histogram(data, ..., statistic = c("mean", "median"))
 \item{...}{The variables to plot. Unquoted, dplyr way}
 
 \item{statistic}{One of "mean", "median". Defaults to "mean"}
+
+\item{.scales}{Character. The \code{scales} arg of ggplot2::facet_wrap(). One of c("fixed", "free","free_x", "free_y"). Defaults to "fixed"}
+
+\item{.colour}{The colour of the bars. Defaults to "grey80"}
 }
 \value{
 A ggplot
 }
 \description{
 Faceted distribution of variables as histograms
+}
+\examples{
+facet_histogram(
+mtcars, everything(), .scales = "free", statistic = "median"
+)
+
 }

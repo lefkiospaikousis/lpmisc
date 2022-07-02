@@ -11,7 +11,7 @@ lp_scatter_by_target(
   width = 25,
   .cor_method = "pearson",
   .smouth = "lm",
-  .scales = c("free", "fixed", "free_x", "free_y")
+  .scales = c("free_y", "free", "fixed", "free_x")
 )
 }
 \arguments{
