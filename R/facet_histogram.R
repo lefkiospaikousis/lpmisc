@@ -44,7 +44,7 @@ facet_histogram <- function(data, ..., statistic = c("mean", "median"),
     ggplot2::ggplot(ggplot2::aes(value))+
     ggplot2::geom_histogram(colour = .colour,  binwidth = function(x) 2 * IQR(x, na.rm = TRUE) / (length(x)^(1/3)))+
     ggplot2::facet_wrap(~key, scales = .scales)+
-    ggplot2::geom_vline( data = data_avg, ggplot2::aes(xintercept = !!sym(statistic)), colour = "red", linetype = "dashed")+
+    ggplot2::geom_vline( data = data_avg, ggplot2::aes(xintercept = !!rlang::sym(statistic)), colour = "red", linetype = "dashed")+
     ggplot2::labs(x = "",
          y = "Frequency",
          caption = paste0("--- Indicates ", statistic, " value"))+
