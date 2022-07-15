@@ -1,6 +1,6 @@
 Package: lpmisc
 Title: Miscellaneous functions to create tables, graphs and tables of statistical tests
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: 
     person(given = "Lefkios",
            family = "Paikousis",
