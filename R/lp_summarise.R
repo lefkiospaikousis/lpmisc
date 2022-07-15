@@ -3,7 +3,7 @@
 #' This function cretes a summary table of multiple variables. It is unsing tidyevaluation
 #' to gather the variables provided, and provide pre-defined summary statistics.
 #' You can also supply grouped tibbles, to get summary statistics per group
-#'
+#' @importFrom stats IQR cor median
 #' @param .data A tibble
 #' @param ... Select variables DPLYR style.
 #' One or more unquoted expressions separated by commas. You can treat variable names like they are positions, so you can use expressions like x:y to select ranges of variables
